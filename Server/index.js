@@ -1,7 +1,17 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const schema = require("./Schema/schema.js");
 
+const app = express();
 
-app.listen(5000, ()=>{
-    "listening on PORT 5000"
-})
+// middleware
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+  })
+);
+
+app.listen(5000, () => {
+  "listening on PORT 5000";
+});
